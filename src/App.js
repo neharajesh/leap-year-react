@@ -1,11 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles.css";
 
 export default function App() {
+  const [answer, setAnswer] = useState("");
+
+  function isleap(year) {
+    if (year % 4 === 0) return "yes";
+    return "no";
+  }
+
+  function leapYearChecker(event) {
+    var year = event.target.value;
+    var result = isleap(year);
+    if (result === "yes") {
+      setAnswer("leap year");
+    } else {
+      setAnswer("not a leap year");
+    }
+  }
   return (
     <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
+      <h1>Leap Year Checker</h1>
+      <input placeholder="Enter year"></input>
+      <button onClick={leapYearChecker}>Check</button>
+      <div> {answer} </div>
     </div>
   );
 }
